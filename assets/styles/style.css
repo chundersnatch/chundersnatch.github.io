@@ -1,0 +1,271 @@
+@font-face {
+  font-family: "MiriamLibre-Bold";
+  src: url('../fonts/MiriamLibre-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "MiriamLibre-Regular";
+  src: url('../fonts/MiriamLibre-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "MPlusCode-Expanded-Bold";
+  src: url('../fonts/MPLUSCodeLatin_Expanded-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "MPlusCode-Expanded-Regular";
+  src: url('../fonts/MPLUSCodeLatin_Expanded-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-color: rgb(0, 0, 0);
+  margin-top: 5vh;
+  color: white;
+  vertical-align: middle;
+  text-align: center;
+}
+
+section {
+  min-height: 100vh;
+}
+
+div {
+  font-family: "MiriamLibre-Regular";
+  font-style: normal;
+  width: auto;
+  margin: auto;
+}
+
+a {
+  font-size: 14pt;
+  color: lightgreen;
+}
+
+p {
+  color: white;
+  font-family: "MiriamLibre-Regular";
+  font-style: normal;
+  width: auto;
+  margin: auto;
+  text-align: center;
+  padding: 20px;
+}
+
+button {
+  font-family: "MiriamLibre-Regular";
+  vertical-align: middle;
+  font-weight: bolder;
+  font-size: 24px;
+  color: rgba(255,255,255, 82%);
+  background-color: rgb(22, 22, 22);
+  padding: 15px 25px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  border: solid rgb(148, 196, 76);
+  border-radius: 12px;
+}
+
+button:hover {
+  background-color: rgb(38, 73, 35);
+  transition: 0.4s;
+  color: lightgreen;
+}
+
+button:active {
+  background-color: #3e8e41;
+  box-shadow: -6px 10px rgb(22, 22, 22);
+  transform: translateY(4px);
+  transition: 0.05s;
+}
+
+.container {
+  font-family: "MiriamLibre-Regular";
+  font-style: normal;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  vertical-align: middle;
+  text-align: center;
+  align-items: center;
+  border-radius: 30px;
+  border: 6px solid rgb(148, 196, 76);
+  background-color: rgb(22, 22, 22);
+  max-width: 82%;
+}
+
+.titleText {
+  vertical-align: middle;
+  font-size: 300%;
+  font-weight: bolder;
+  padding-top: 20px;
+}
+
+.rndEmoji {
+  animation: emojiGlow 8s infinite ease;
+  vertical-align: middle;
+  font-size: 1000%;
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+
+.mainText {
+  vertical-align: middle;
+  font-size: 1.25rem;
+  font-weight: bolder;
+  padding-top: 20px;
+}
+
+.socialStuff {
+  font-family: "MiriamLibre-Regular";
+  font-style: normal;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  vertical-align: middle;
+  text-align: center;
+  align-items: center;
+  border-radius: 30px;
+  border: 4px solid rgb(148, 196, 76);
+  background-color: rgb(22, 22, 22);
+  max-width: 300px;
+  min-height: 60px;
+}
+
+.socialLinks {
+  padding-top: 10px;
+}
+
+.socialLinks > a, .socialLinks > img {
+  vertical-align: middle;
+  text-align: center;
+  align-self: center;
+  padding-left: 15px;
+  padding-right: 15px;
+  background: rgba(0,0,0,0);
+  background-size: auto;
+  background-position: center;
+}
+
+.socialLinks > a:hover {
+  animation: greenGlow 1s infinite ease-in-out;
+}
+
+.downFinger {
+  font-size: 3rem;
+  animation: bouncey 1.2s infinite ease-in-out, fingerGlow 4.8s infinite ease-in-out;
+}
+
+#downArrow {
+  vertical-align: middle;
+  font-size: 400%;
+  padding-top: 1vh;
+  animation: downGlow 10s infinite ease-in-out;
+  margin-top: 4%;
+}
+
+.promoContainer {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  vertical-align: middle;
+  text-align: center;
+  align-items: center;
+  border-radius: 30px;
+  border: 4px solid rgb(148, 196, 76);
+  background-color: rgb(22, 22, 22);
+  min-height: 60px;
+  padding-top: 14px;
+  padding-bottom: 20px;
+}
+
+.promoText {
+  font-family: "MPlusCode-Expanded-Regular";
+  font-style: normal;
+  vertical-align: middle;
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding-top: 20px;
+}
+
+.osnft {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  vertical-align: middle;
+  text-align: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+.osnft > nft-card {
+  padding-top: -1px;
+  border-radius: 10px;
+  border: 6px solid rgb(44, 109, 36);
+  background-color: transparent;
+}
+
+@keyframes greenGlow {
+  0%, 100% {background: radial-gradient(rgba(148, 196, 76, 0) 40%, rgba(22, 22, 22, 1) 60%);}
+  10%, 90% {background: radial-gradient(rgba(148, 196, 76, 0.2) 40%, rgba(22, 22, 22, 1) 60%);}
+  20%, 80% {background: radial-gradient(rgba(148, 196, 76, 0.4) 40%, rgba(22, 22, 22, 1) 60%);}
+  30%, 70% {background: radial-gradient(rgba(148, 196, 76, 0.6) 40%, rgba(22, 22, 22, 1) 60%);}
+  40%, 60% {background: radial-gradient(rgba(148, 196, 76, 0.8) 40%, rgba(22, 22, 22, 1) 60%);}
+  50% {background: radial-gradient(rgba(148, 196, 76, 1) 40%, rgba(22, 22, 22, 1) 60%);}
+}
+
+@keyframes bouncey {
+  0% {transform: translateY(4px);}
+  10% {transform: translateY(8px);}
+  20% {transform: translateY(12px);}
+  30% {transform: translateY(16px);}
+  40% {transform: translateY(20px);}
+  50% {transform: translateY(24px);}
+  60% {transform: translateY(20px);}
+  70% {transform: translateY(16px);}
+  80% {transform: translateY(12px);}
+  90% {transform: translateY(8px);}
+  100% {transform: translateY(4px);}
+}
+
+@keyframes emojiGlow {
+  /* text-shadow: <offset-x | offset-y | blur-radius | color> */
+  0%, 100% {text-shadow: 20px -20px 20px rgba(0,0,255,1), -20px 20px 20px rgba(255,0,0,1);}
+  20%, 80% {text-shadow: -20px 20px 20px rgba(0,0,255,1), 20px -20px 20px rgba(255,0,0,1);}
+  40% {text-shadow: 20px -20px 20px rgba(0,0,255,1), -20px 20px 20px rgba(255,0,0,1);}
+  60% {text-shadow: -20px -20px 20px rgba(0,0,255,1), 20px 20px 20px rgba(255,0,0,1);}
+}
+
+@keyframes fingerGlow {
+  /* text-shadow: <offset-x | offset-y | blur-radius | color> */
+  0%, 100% {text-shadow: 0px 0px 0px rgba(0, 30, 255, 0.5);}
+  10%, 90% {text-shadow: 0px 0px 0px rgba(0, 30, 255, 0.5);}
+  20% {text-shadow: 85px 0px 1px rgba(0, 30, 255, 0.5), -85px 0px 1px rgba(255, 0, 0, 0.5);}
+  40% {text-shadow: 85px 0px 1px rgba(0, 30, 255, 0.5), -85px 0px 1px rgba(255, 0, 0, 0.5), 0px -30px 1px rgba(0, 255, 21, 0.5);}
+  60% {text-shadow: 85px 0px 1px rgba(0, 30, 255, 0.5), -85px 0px 1px rgba(255, 0, 0, 0.5), 0px 40px 1px rgba(0, 255, 21, 0.5);}
+  80% {text-shadow: 85px 0px 1px rgba(0, 30, 255, 0.5), -85px 0px 1px rgba(255, 0, 0, 0.5), 0px 0px 1px rgba(0, 255, 21, 0.5);}
+}
+
+@keyframes downGlow {
+  0% {text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);}
+  10% {text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);}
+  20% {text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);}
+  30% {text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);}
+  40% {text-shadow: 0px 0px 30px rgba(255, 255, 255, 0.6);}
+  50% {text-shadow: 0px 0px 30px rgba(255, 255, 255, 0.7);}
+  60% {text-shadow: 0px 0px 30px rgba(255, 255, 255, 0.6);}
+  70% {text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);}
+  80% {text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);}
+  90% {text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);}
+  100% {text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);}
+}

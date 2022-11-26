@@ -1,0 +1,469 @@
+@font-face {
+  font-family: "MiriamLibre-Bold";
+  src: url('../fonts/MiriamLibre-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "MiriamLibre-Regular";
+  src: url('../fonts/MiriamLibre-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "MPlusCode-Expanded-Bold";
+  src: url('../fonts/MPLUSCodeLatin_Expanded-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "MPlusCode-Expanded-Regular";
+  src: url('../fonts/MPLUSCodeLatin_Expanded-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-color: rgb(0, 0, 0);
+  margin-top: 5vh;
+  color: white;
+  vertical-align: middle;
+}
+
+section {
+  min-height: 100vh;
+}
+
+div {
+  font-family: "MiriamLibre-Regular";
+  font-style: normal;
+  width: auto;
+  margin: auto;
+}
+
+button:hover {
+  background-color: rgb(38, 73, 35);
+  transition: 0.4s;
+  color: lightgreen;
+}
+
+#menuoptscontainer {
+  font-family: "MiriamLibre-Regular";
+  justify-content: center;
+  font-style: normal;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: auto;
+  border-radius: 10px;
+  border: 3px solid rgb(236, 92, 49);
+  background-color: rgb(22, 22, 22);
+  padding: 2px;
+  max-width: 50vw;
+  z-index: 100;
+  position: inherit;
+  right: 36%;
+  left: 36%;
+}
+
+#menu {
+  font-family: "MiriamLibre-Regular";
+  justify-content: center;
+  font-style: normal;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  margin: auto;
+  background-color: rgb(22, 22, 22);
+  padding: 2px;
+  max-width: 50vw;
+  z-index: 100;
+  position: inherit;
+  right: 36%;
+  left: 36%;
+}
+
+#menuoptstext {
+  margin: auto;
+  text-align: center;
+}
+
+#optstext {
+  margin: auto;
+  text-align: center;
+}
+
+#voiceOptsBtn:hover{
+  animation: greenGlow 1s infinite;
+  cursor: pointer;
+}
+
+#clickerDisplayBtn:hover{
+  animation: greenGlow 1s infinite;
+  cursor: pointer;
+}
+
+#wordsDisplayBtn:hover{
+  animation: greenGlow 1s infinite;
+  cursor: pointer;
+}
+
+#voiceOptsBtn {
+  font-family: "MiriamLibre-Regular";
+  font-weight: bold;
+  font-size: 14pt;
+  color: rgba(255,255,255, 82%);
+  background-color: rgb(22, 22, 22);
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  border: 1px solid rgb(22, 22, 22);
+  z-index: 100;
+}
+
+#clickerDisplayBtn {
+  font-family: "MiriamLibre-Regular";
+  font-weight: bold;
+  font-size: 14pt;
+  color: rgba(255,255,255, 82%);
+  background-color: rgb(22, 22, 22);
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  border: 1px solid rgb(22, 22, 22);
+  z-index: 100;
+}
+
+#wordsDisplayBtn {
+  font-family: "MiriamLibre-Regular";
+  font-weight: bold;
+  font-size: 14pt;
+  color: rgba(255,255,255, 82%);
+  background-color: rgb(22, 22, 22);
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  border: 1px solid rgb(22, 22, 22);
+  z-index: 100;
+}
+
+#clickerBtn {
+  font-family: "MiriamLibre-Regular";
+  vertical-align: middle;
+  font-weight: bolder;
+  font-size: 24px;
+  color: rgba(255,255,255, 82%);
+  background-color: rgb(22, 22, 22);
+  padding: 15px 25px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  border: solid rgb(148, 196, 76);
+  border-radius: 12px;
+}
+
+.footertext {
+  color: white;
+  font-family: "MiriamLibre-Regular";
+  font-style: normal;
+  width: auto;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+a {
+  font-size: 14pt;
+  color: lightgreen;
+}
+
+.gameContainer {
+  font-family: "MiriamLibre-Regular";
+  font-style: normal;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  vertical-align: middle;
+  text-align: center;
+  align-items: center;
+  border-radius: 30px;
+  border: 6px solid rgb(148, 196, 76);
+  background-color: rgb(22, 22, 22);
+  max-width: 82%;
+}
+
+.titleText {
+  vertical-align: middle;
+  font-size: 300%;
+  font-weight: bolder;
+  padding-top: 20px;
+}
+
+.rndEmoji {
+  animation: emojiGlow 8s infinite ease;
+  vertical-align: middle;
+  font-size: 1000%;
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+
+.mainText {
+  vertical-align: middle;
+  font-size: 1.25rem;
+  font-weight: bolder;
+  padding-top: 20px;
+}
+
+#hsContainer {
+  animation: HSAnim 1s infinite;
+  font-family: "MPlusCode-Expanded-Bold";
+  font-style: normal;
+  color: white;
+  display: block;
+  padding-right: 3vw;
+  padding-left: 3vw;
+  padding-bottom: 3vh;
+  top: 2.5vh;
+  left: 5vw;
+  position: fixed;
+  text-align: center;
+  max-width: 125px;
+  background: rgba(22, 22, 22, 0.8);
+  z-index: 101;
+}
+
+#hsText {
+  animation: HStextAnim 4s infinite;
+  font-family: "MPlusCode-Expanded-Bold";
+  vertical-align: middle;
+  font-size: 2rem;
+  font-weight: bold;
+  padding-top: 20px;
+  text-align: center;
+}
+
+#scoreText {
+  animation: HStextAnim 4s infinite;
+  font-family: "MPlusCode-Expanded-Bold";
+  vertical-align: middle;
+  font-size: 2rem;
+  font-weight: bold;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.curScoreContainer {
+  animation: HSAnim 1s infinite;
+  font-family: "MPlusCode-Expanded-Bold";
+  font-style: normal;
+  color: white;
+  display: block;
+  padding-right: 3vw;
+  padding-left: 3vw;
+  padding-bottom: 3vh;
+  top: 2.5vh;
+  right: 5vw;
+  position: fixed;
+  text-align: center;
+  max-width: 125px;
+  background: rgba(22, 22, 22, 0.8);
+  z-index: 101;
+}
+
+#clickerContainer {
+  font-family: "MiriamLibre-Regular";
+  font-style: normal;
+  color: white;
+  display: none;
+  flex-direction: column;
+  border-radius: 20px;
+  border: 3px solid rgb(124, 71, 138);
+  background-color: rgb(22, 22, 22);
+  padding-right: 3vw;
+  padding-left: 3vw;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  max-width: 85vw;
+}
+
+#clickerList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-weight: bold;
+  overflow: auto;
+  font-size: 500%;
+}
+
+#voiceOptions {
+  display: none;
+  margin: auto;
+  text-align: center;
+  font-family: "MPlusCode-Expanded-Regular";
+  font-style: normal;
+  font-size: 12px;
+  color: white;
+  flex-direction: column;
+  border-radius: 20px;
+  border: 2px solid rgb(236, 92, 49);
+  background-color: rgb(22, 22, 22);
+  padding-right: 1vw;
+  padding-left: 1vw;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  max-width: 60vw;
+}
+
+#voiceText {
+  vertical-align: middle;
+  font-size: 0.75rem;
+  font-weight: bolder;
+  padding-bottom: 5px;
+}
+
+#select {
+  margin: auto;
+  font-family: "MPlusCode-Expanded-Regular";
+  font-style: normal;
+  font-size: 0.75rem;
+  padding: 3px;
+  color: white;
+  display: flex;
+  border-radius: 10px;
+  border: 2px solid rgb(120, 120, 120);
+  background-color: rgb(11, 11, 11);
+  max-width: 58vw;
+}
+
+#wordsContainer {
+  font-family: "MPlusCode-Expanded-Regular";
+  font-style: normal;
+  color: white;
+  display: none;
+  flex-direction: column;
+  border-radius: 20px;
+  border: 3px solid rgb(67, 73, 112);
+  background-color: rgb(22, 22, 22);
+  padding-right: 3vw;
+  padding-left: 3vw;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  max-width: 85vw;
+}
+
+#sayPhraseBtn {
+  font-family: "MiriamLibre-Regular";
+  vertical-align: middle;
+  font-weight: normal;
+  font-size: 14px;
+  justify-content: center;
+  color: rgba(255,255,255, 82%);
+  background-color: rgb(22, 22, 22);
+  padding: 2px 4px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  border: 1px solid rgb(148, 196, 76);
+  border-radius: 6px;
+  margin: auto;
+}
+
+#wordsList {
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+  flex-wrap: nowrap;
+  font-weight: normal;
+  font-size: 10pt;
+}
+
+@keyframes greenGlow {
+  0%, 100% {background: radial-gradient(rgba(148, 196, 76, 0) 40%, rgba(22, 22, 22, 1) 60%);}
+  10%, 90% {background: radial-gradient(rgba(148, 196, 76, 0.2) 40%, rgba(22, 22, 22, 1) 60%);}
+  20%, 80% {background: radial-gradient(rgba(148, 196, 76, 0.4) 40%, rgba(22, 22, 22, 1) 60%);}
+  30%, 70% {background: radial-gradient(rgba(148, 196, 76, 0.6) 40%, rgba(22, 22, 22, 1) 60%);}
+  40%, 60% {background: radial-gradient(rgba(148, 196, 76, 0.8) 40%, rgba(22, 22, 22, 1) 60%);}
+  50% {background: radial-gradient(rgba(148, 196, 76, 1) 40%, rgba(22, 22, 22, 1) 60%);}
+}
+
+@keyframes bouncey {
+  0% {transform: translateY(4px);}
+  10% {transform: translateY(8px);}
+  20% {transform: translateY(12px);}
+  30% {transform: translateY(16px);}
+  40% {transform: translateY(20px);}
+  50% {transform: translateY(24px);}
+  60% {transform: translateY(20px);}
+  70% {transform: translateY(16px);}
+  80% {transform: translateY(12px);}
+  90% {transform: translateY(8px);}
+  100% {transform: translateY(4px);}
+}
+
+@keyframes emojiGlow {
+  /* text-shadow: <offset-x | offset-y | blur-radius | color> */
+  0%, 100% {text-shadow: 20px -20px 20px rgba(0,0,255,0.82), -20px 20px 20px rgba(255,0,0,0.82);}
+  20%, 80% {text-shadow: -20px 20px 20px rgba(0,0,255,0.82), 20px -20px 20px rgba(255,0,0,0.82);}
+  40% {text-shadow: 20px -20px 20px rgba(0,0,255,0.82), -20px 20px 20px rgba(255,0,0,0.82);}
+  60% {text-shadow: -20px -20px 20px rgba(0,0,255,0.82), 20px 20px 20px rgba(255,0,0,0.82);}
+}
+
+@keyframes fingerGlow {
+  /* text-shadow: <offset-x | offset-y | blur-radius | color> */
+  0%, 100% {text-shadow: 0px 0px 0px rgba(0, 30, 255, 0.5);}
+  10%, 90% {text-shadow: 0px 0px 0px rgba(0, 30, 255, 0.5);}
+  20% {text-shadow: 85px 0px 1px rgba(0, 30, 255, 0.5), -85px 0px 1px rgba(255, 0, 0, 0.5);}
+  40% {text-shadow: 85px 0px 1px rgba(0, 30, 255, 0.5), -85px 0px 1px rgba(255, 0, 0, 0.5), 0px -30px 1px rgba(0, 255, 21, 0.5);}
+  60% {text-shadow: 85px 0px 1px rgba(0, 30, 255, 0.5), -85px 0px 1px rgba(255, 0, 0, 0.5), 0px 40px 1px rgba(0, 255, 21, 0.5);}
+  80% {text-shadow: 85px 0px 1px rgba(0, 30, 255, 0.5), -85px 0px 1px rgba(255, 0, 0, 0.5), 0px 0px 1px rgba(0, 255, 21, 0.5);}
+}
+
+@keyframes downGlow {
+  0% {text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);}
+  10% {text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);}
+  20% {text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);}
+  30% {text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);}
+  40% {text-shadow: 0px 0px 30px rgba(255, 255, 255, 0.6);}
+  50% {text-shadow: 0px 0px 30px rgba(255, 255, 255, 0.7);}
+  60% {text-shadow: 0px 0px 30px rgba(255, 255, 255, 0.6);}
+  70% {text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);}
+  80% {text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);}
+  90% {text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);}
+  100% {text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);}
+}
+
+@keyframes cLGrow {
+  0%, 100% {font-size: 100%;}
+  10%, 90% {font-size: 200%;}
+  20%, 80% {font-size: 300%;}
+  30%, 70% {font-size: 400%;}
+  40%, 60% {font-size: 500%;}
+  50% {font-size: 600%;}
+}
+
+@keyframes HSAnim {
+  0%, 100% {
+    border: 6px dotted rgba(255, 145, 0, 0.8);
+    border-radius: 10px;
+  }
+  50% {
+    border: 6px dotted rgba(255, 145, 0, 0.8);
+    border-radius: 10px;
+  }
+}
+
+@keyframes HStextAnim {
+  0%, 100% {
+    text-shadow: 0px 0px 0px rgb(0, 255, 21);
+  }
+  50% {
+    text-shadow: 0px 0px 20px rgb(0, 255, 21);
+  }
+}

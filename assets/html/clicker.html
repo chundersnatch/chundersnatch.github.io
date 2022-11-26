@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../scripts/clicker.js">
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <title>'ClickeR' @ Chundersnatch[dot]com</title>
+</head>
+<body>
+    <section>
+        <div class="hsContainer" id="hsContainer">
+            <span class="mainText">High Score</span>
+            <br />
+            <br />
+            <span class="hsEl" id="hsText">0</span>
+        </div>
+        <div class="curScoreContainer" id="curScoreContainer">
+            <span class="mainText">This Score</span>
+            <br />
+            <br />
+            <span class="scoreEl" id="scoreText">0</span>
+        </div>
+        <br />
+        <div class="gameContainer">
+            <span class="titleText"></span>
+            <br />
+            <br />
+            <span class="rndEmoji" id="rndEmoji"></span>
+            <span class="mainText" id="smOut">Click the button...</span>
+            <span>
+                <button type="button" id="clickerBtn" onmousedown="clickeR()">?</button>
+            </span>
+            <br />
+            <div class="menu" id="menuoptscontainer">
+                <div id="menuoptstext">
+                    <p id="optstext">.: options :.</p>
+                </div>
+                <div class="menu" id="menu">
+                    <button type="button" id="voiceOptsBtn" onclick="toggleVoiceOpts()">&#128266;</button>
+                    <button type="button" id="clickerDisplayBtn" onclick="toggleClickerDisplay()">&#128515;</button>
+                    <button type="button" id="wordsDisplayBtn" onclick="toggleWordsDisplay()">&#x270F;&#xFE0F;</button>
+                </div>
+            </div>
+            
+            <br />
+        </div>
+        <br />
+        <div class="voiceOptions" id="voiceOptions">
+            <span class="voiceText" id="voiceText">Voice to use:</span>
+            <select title="select" id="select">
+            </select>
+        </div>
+        <br />
+        <div class="wordsContainer" id="wordsContainer">
+            <button type="button" id="sayPhraseBtn" onclick="sayPhrase()">Say this...</button>
+            <br />
+            <span class="wordsList" id="wordsList"></span>
+        </div>
+        <br />
+        <div class="clickerContainer" id="clickerContainer">
+            <span class="clickerList" id="clickerList"></span><br />
+        </div>
+    </section>
+    <br />
+    <p class="footertext">(C), (TM), (R) 2022 JS3 Tech LLC<br /><a href="https://github.com/raystanza">Jim Sines</a> wrote this site (for "fun") using <br /><a href="https://code.visualstudio.com/">VS Code</a></p>, <a href="https://gimp.org/">GIMP</a> & hosted on <a href="https://github.com/">GitHub</a>.</p>
+<script src="../scripts/clicker.js" type="text/javascript" async></script>
+</body>
+</html>
