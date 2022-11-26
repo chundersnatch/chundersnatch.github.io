@@ -111,6 +111,16 @@ button:active {
   padding-top: 20px;
 }
 
+.footertext {
+  color: white;
+  font-family: "MiriamLibre-Regular";
+  font-style: normal;
+  width: auto;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
+
 .rndEmoji {
   animation: emojiGlow 8s infinite ease;
   vertical-align: middle;
