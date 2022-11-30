@@ -98,11 +98,6 @@ button:hover {
   text-align: center;
 }
 
-#voiceOptsBtn:hover{
-  animation: greenGlow 1s infinite;
-  cursor: pointer;
-}
-
 #clickerDisplayBtn:hover{
   animation: greenGlow 1s infinite;
   cursor: pointer;
@@ -124,6 +119,11 @@ button:hover {
   outline: none;
   border: 1px solid rgb(22, 22, 22);
   z-index: 100;
+}
+
+#voiceOptsBtn:hover{
+  animation: greenGlow 1s infinite;
+  cursor: pointer;
 }
 
 #clickerDisplayBtn {
@@ -357,22 +357,55 @@ a {
   max-width: 85vw;
 }
 
-#sayPhraseBtn {
+#stopSpeakingBtn {
   font-family: "MiriamLibre-Regular";
   vertical-align: middle;
   font-weight: normal;
-  font-size: 14px;
+  font-size: 16px;
   justify-content: center;
-  color: rgba(255,255,255, 82%);
+  color: rgba(255,255,255, 0.82);
   background-color: rgb(22, 22, 22);
-  padding: 2px 4px;
+  padding: 3px 5px;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
   outline: none;
-  border: 1px solid rgb(148, 196, 76);
+  border: 2px solid rgb(148, 196, 76);
   border-radius: 6px;
   margin: auto;
+  min-width: 130px;
+}
+
+#stopSpeakingBtn:hover {
+  background-color: rgb(38, 73, 35);
+  transition: 0.4s;
+  color:rgba(255, 255, 255, 0.82);
+}
+
+#sayPhraseBtn {
+  font-family: "MiriamLibre-Regular";
+  vertical-align: middle;
+  font-weight: normal;
+  font-size: 16px;
+  justify-content: center;
+  color: rgba(255,255,255, 82%);
+  background-color: rgb(22, 22, 22);
+  padding: 3px 5px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  border: 2px solid rgb(148, 196, 76);
+  border-radius: 6px;
+  margin: auto;
+  min-width: 130px;
+}
+
+#sayPhraseBtn:hover {
+  background-color: rgb(38, 73, 35);
+  transition: 0.4s;
+  color: lightgreen;
+  color:rgba(255, 255, 255, 0.82);
 }
 
 #wordsList {
@@ -383,6 +416,55 @@ a {
   font-weight: normal;
   font-size: 10pt;
 }
+
+.slidecontainer {
+  width: 100%;
+}
+
+.slider:hover {
+  opacity: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;  
+  background: rgb(38, 73, 35);
+  outline: none;
+  opacity: 70%;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%; 
+  background: rgb(148, 196, 76);
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: rgb(148, 196, 76);
+  cursor: pointer;
+}
+
+.optsText {
+  color: white;
+  font-family: "MiriamLibre-Bold";
+  font-style: normal;
+  width: auto;
+  margin: auto;
+  text-align: center;
+}
+
+
 
 @keyframes greenGlow {
   0%, 100% {background: radial-gradient(rgba(148, 196, 76, 0) 40%, rgba(22, 22, 22, 1) 60%);}

@@ -4034,58 +4034,66 @@ const emojiJSONArray = [
 ];
 
 const smartMouthArray = ["you're doing great!",
-"keep up the meh work", "you do have all of your fingers, right?",
-"i'm not upset, just dissapointed", "you are out of the will!",
-"the world needs slow folks, like you", "Fantastic!"];
+"keep up the ::meh:: work", "why?", "i'm not upset, just dissapointed",
+"you are out of the will!", "Fantastic!", "its just kind of sad now"
+];
 
 const synth = window.speechSynthesis; //init. the speechSynth to a const.
-//var inputForm = document.querySelector('wordsList'); // DOM <form> element
 let inputTxt = document.querySelector('.wordsList'); // text string to speak
 let voiceSelect = document.querySelector('select'); // DOM element <select>
-//var pitch = document.querySelector('#pitch'); // pitch of the voice speaking
-//let PSuRndNumPitch = Math.fround(Math.random()+0.01);
-//let pitchValue = PSuRndNumPitch; //document.querySelector('.pitch-value'); // pitch value of the voice speaking
-let pitchValue = 0.9;
-//var rate = document.querySelector('#rate'); //rate of the voice speaking
+
+let pitchValue = document.getElementById('pitchValue'); // pitch value of the voice speaking
+let pitchTxt = document.getElementById('pitchTxt');
+
+let rateValue = document.getElementById('rateValue'); //rate value of the voice speaking
+let rateTxt = document.getElementById('rateTxt');
+
+pitchValue.oninput = function () {
+  pitchTxt.innerText = "Pitch: " + pitchValue.value;
+}
+
+rateValue.oninput = function () {
+  rateTxt.innerText = "Rate: " + rateValue.value;
+}
+
 let PSuRndNumRate = Math.fround(Math.random()+0.1);
-let rateValue = 1; //document.querySelector('.rate-value'); //rate value of the voice speaking
-let voices = []; //array obj for the voices
-//function to populate the voices array object with items
+let voices = [];
 
 function populateVoiceList() {
   voices = synth.getVoices().sort(function (a, b) { 
-    const aname = a.name.toUpperCase(), bname = b.name.toUpperCase(); //staic case for string
-    if ( aname < bname ) return -1; //move item before
-    else if ( aname == bname ) return 0; //already sorted
-    else return +1; //default to move item after
+    const aname = a.name.toUpperCase(), bname = b.name.toUpperCase();
+    if ( aname < bname ) return -1;
+    else if ( aname == bname ) return 0;
+    else return +1;
   });
-  let selectedIndex = voiceSelect.selectedIndex < 0 ? 0 : voiceSelect.selectedIndex; //ternary operation for selected voice of voices index
-  voiceSelect.innerHTML = ''; //insert nothing
+  let selectedIndex = voiceSelect.selectedIndex < 0 ? 0 : voiceSelect.selectedIndex;
+  voiceSelect.innerHTML = '';
   for(i = 0; i < voices.length ; i++) { 
-    let option = document.createElement('option'); //init the option element for DOM
-    option.textContent = voices[i].name + ' (' + voices[i].lang + ')'; //pad the text content for UI/UX
+    let option = document.createElement('option');
+    option.textContent = voices[i].name + ' (' + voices[i].lang + ')';
     if(voices[i].default) {
       option.textContent += ' (default)';
     }
-    option.setAttribute('data-lang', voices[i].lang); //set element option attrib for language
-    option.setAttribute('data-name', voices[i].name); //set element option attrib for name
-    voiceSelect.appendChild(option); //add the indexed voices to the element
+    option.setAttribute('data-lang', voices[i].lang);
+    option.setAttribute('data-name', voices[i].name);
+    voiceSelect.appendChild(option);
   }
-  voiceSelect.selectedIndex = selectedIndex; //set the selection by 'default'
+  voiceSelect.selectedIndex = selectedIndex;
 }
-window.onload = function() {
-  const rndMax = emojiJSONArray.length; //get number of items in array (the length)
-  const rndNum = Math.floor(Math.random()*(rndMax-1)); //gen a rnd number based on the number of items in array (length)    
-  const newEmoji = emojiJSONArray[rndNum]; //from the emojiDec array, pick an item at position [rndNum]
-  const htmlEmoji = newEmoji.html; //wrap the rndNum for HTML use.
 
-  document.getElementById("rndEmoji").innerHTML = htmlEmoji; //insert the new emoji from the array
-  document.getElementById("clickerBtn").innerText = "Click Me!"; //set the button text
+window.onload = function() {
+  const rndMax = emojiJSONArray.length;
+  const rndNum = Math.floor(Math.random()*(rndMax-1));
+  const newEmoji = emojiJSONArray[rndNum];
+  const htmlEmoji = newEmoji.html;
+
+  document.getElementById("rndEmoji").innerHTML = htmlEmoji;
+  document.getElementById("clickerBtn").innerText = "Click Me!";
   
-  const highScoreFromStorage = localStorage.getItem('clickerHS'); // set localstorage var
+  const highScoreFromStorage = localStorage.getItem('clickerHS');
   
-  if (highScoreFromStorage !== undefined && highScoreFromStorage !== null){ //check if highscore exists in localstorage
-    document.getElementById("hsText").innerText = highScoreFromStorage.toString(); //load highscore from localstorage into DOM element.
+  if (highScoreFromStorage !== undefined && highScoreFromStorage !== null){ 
+    document.getElementById("hsText").innerText = highScoreFromStorage.toString();
   };
   
   populateVoiceList();
@@ -4127,10 +4135,10 @@ function sayPhrase(){
         break;
       }
     }
-    phraseToSay.pitch = pitchValue;
-    phraseToSay.rate = rateValue;
+    phraseToSay.pitch = pitchValue.value;
+    phraseToSay.rate = rateValue.value;
     synth.speak(phraseToSay);
-    console.log(`pitch: ${pitchValue}\nrate: ${rateValue}`);
+    console.log(`pitch: ${pitchValue.value}\nrate: ${rateValue.value}`);
   }
 }
 
@@ -4148,9 +4156,8 @@ function clickeR(){
   document.getElementById("clickerList").insertAdjacentHTML("afterbegin", clickerHTML2ins); //insert cilcker emoji into list
   document.getElementById("wordsList").insertAdjacentText("beforeend", wordsFromArray); //insert the emoji name from the emojiJSONArray
 
-  smartMouth("smOut"); //insert smartmouth text
+  smartMouth("smOut");
 
-  //HIGH SCORE D.N.T!!!
   score = parseInt(document.getElementById("scoreText").textContent);
   const displayedHS = parseInt(document.getElementById("hsText").textContent);   
   if (displayedHS <= score){

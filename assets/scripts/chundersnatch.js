@@ -1231,4 +1231,4 @@ function getNewEmoji(elID){
     const rndMax = emojiArray.length;
     const genRndNum = Math.floor(Math.random() * (rndMax) - 1);
     document.getElementById(elID).innerHTML="&#" + emojiArray[genRndNum] + ";";
-}
+};
