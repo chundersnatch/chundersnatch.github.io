@@ -14,7 +14,7 @@ This is fairly useless and is intented as an annoyance machine written in Javasc
 Clicking the "Say This" button will speak the emoji 'paragraph'.
 
 #### FAQ:
- - Q: Can I change the speed/pitch/tone?
+ - Q: Can I change the speed/pitch?
  - <s>A: No, not yet...it's in the code, but that's where I left off.</s>
  - A: Yes! Click on the ✏️ icon and you will find both!
 
