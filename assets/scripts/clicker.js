@@ -4085,6 +4085,14 @@ window.onload = function() {
   const rndNum = Math.floor(Math.random()*(rndMax-1));
   const newEmoji = emojiJSONArray[rndNum];
   const htmlEmoji = newEmoji.html;
+  const emojiCanvasObj = document.getElementById("emojiCanvasOut");
+  let emojiDraw = emojiCanvasObj.getContext("2d");
+  emojiCanvasObj.height= 200;
+  emojiCanvasObj.width = window.innerWidth / 1.2;
+  emojiDraw.font = "64pt MiriamLibre-Regular";
+  emojiDraw.textAlign = "left";
+  emojiDraw.fillText(newEmoji.emoji, 80, 80);
+  emojiDraw.save();
 
   document.getElementById("rndEmoji").innerHTML = htmlEmoji;
   document.getElementById("clickerBtn").innerText = "Click Me!";
@@ -4100,6 +4108,18 @@ window.onload = function() {
     speechSynthesis.onvoiceschanged = populateVoiceList;
   };
 };
+
+function saveClickerList() {
+  let emojiCanvasObj = document.getElementById("emojiCanvasOut");
+  let clickerListObj = document.getElementById("clickerList");
+    
+  let emojiDraw = emojiCanvasObj.getContext("2d");
+  emojiCanvasObj.height= 80;
+  emojiCanvasObj.width = window.innerWidth / 1.2;
+  emojiDraw.font = "10pt";
+  emojiDraw.textAlign = "left";
+  emojiDraw.fillText(clickerListObj, 25, 40);
+}
 
 function rndNumfromArray(arrayObj){ 
     const rndMax = arrayObj.length;
@@ -4141,10 +4161,10 @@ function sayPhrase(){
   }
 }
 
-function clickeR(){
+function ORIGINALclickeR(){
   const rndMax = emojiJSONArray.length; //get number of items in array (the length)
   const rndNum = Math.floor(Math.random()*(rndMax-1)); //gen a rnd number based on the number of items in array (length)    
-  const newEmoji = emojiJSONArray[rndNum]; //from the emojiDec array, pick an item at position [rndNum]
+  const newEmoji = emojiJSONArray[rndNum]; //from the emojiJSONarray, pick an item at position [rndNum]
   const htmlEmoji = newEmoji.html; //wrap the rndNum for HTML use.    
   const clickerHTMLfrnt = `<span id="clickerList(${rndNum})">`; //HTML wrap
   const clickerHTMLrear = `<br /></span>`; // HTML wrap
@@ -4154,9 +4174,8 @@ function clickeR(){
   document.getElementById("rndEmoji").innerHTML = htmlEmoji; //insert new main emoji
   document.getElementById("clickerList").insertAdjacentHTML("afterbegin", clickerHTML2ins); //insert cilcker emoji into list
   document.getElementById("wordsList").insertAdjacentText("beforeend", wordsFromArray); //insert the emoji name from the emojiJSONArray
-
+  
   smartMouth("smOut");
-
   score = parseInt(document.getElementById("scoreText").textContent);
   const displayedHS = parseInt(document.getElementById("hsText").textContent);   
   if (displayedHS <= score){
@@ -4171,6 +4190,64 @@ function clickeR(){
   scoreInt++;
   score = scoreInt.toString();
   document.getElementById("scoreText").textContent = score;
+}
+
+function clickeR(){
+  const rndMax = emojiJSONArray.length; //get number of items in array (the length)
+  const rndNum = Math.floor(Math.random()*(rndMax-1)); //gen a rnd number based on the number of items in array (length)    
+  
+  const newEmoji = emojiJSONArray[rndNum]; //from the emojiJSONarray, pick an item at position [rndNum]
+  const htmlEmoji = newEmoji.html; //wrap the rndNum for HTML use.    
+  const emojiEmoji = newEmoji.emoji; //wrap the rndNum for HTML use.    
+  //const unicodeEmoji = newEmoji.unicode; //wrap the rndNum for HTML use.    
+  
+  const clickerHTMLfrnt = `<span id="clickerList(${rndNum})">`; //HTML wrap
+  const clickerHTMLrear = `<br /></span>`; // HTML wrap
+  const clickerHTML2ins = `${clickerHTMLfrnt}${htmlEmoji}${clickerHTMLrear}`; //built HTML string for insertion
+  
+  const wordsFromArrayObj = emojiJSONArray.find(e => e.html === htmlEmoji); // find the html notation, using htmlEmoji var
+  const emojiFromArrayObj = emojiJSONArray.find(e => e.emoji === emojiEmoji); // find the emoji, using emoji var
+  //const unicodeFromArrayObj = emojiJSONArray.find(e => e.unicode === unicodeEmoji); // find the html notation, using htmlEmoji var
+  
+  const wordsFromArray = wordsFromArrayObj.name + " "; // add a whitespace to the end, for readability
+  const emojiFromArray = emojiFromArrayObj.emoji + " "; // " " " " " " " "
+  //const unicodeFromArray = "U+"+ unicodeFromArrayObj.unicode + " "; // " " " " " " " "
+    
+  document.getElementById("rndEmoji").innerHTML = htmlEmoji; //insert new main emoji
+  document.getElementById("clickerList").insertAdjacentHTML("afterbegin", clickerHTML2ins); //insert cilcker emoji into list
+  document.getElementById("wordsList").insertAdjacentText("beforeend", wordsFromArray); //insert the emoji name from the emojiJSONArray
+  //document.getElementById("emojiCanvasOut").innerText(emojiFromArray);
+  
+  smartMouth("smOut");
+  
+  score = parseInt(document.getElementById("scoreText").textContent);
+  
+  const displayedHS = parseInt(document.getElementById("hsText").textContent);   
+  
+  if (displayedHS <= score){
+    hscore = document.getElementById("hsText").textContent;
+    hscoreInt = parseInt(hscore).toFixed(0);
+    hscoreInt++;
+    hscore = hscoreInt.toString();
+    document.getElementById("hsText").textContent = hscore;
+    localStorage.setItem('clickerHS', hscore);
+  };
+  scoreInt = parseInt(score).toFixed(0);
+  scoreInt++;
+  score = scoreInt.toString();
+  document.getElementById("scoreText").textContent = score;
+
+  let canvasDraw = document.getElementById("emojiCanvasOut").getContext("2d");
+  canvasDraw.restore();
+  canvasDraw.font = "64pt MiriamLibre-Regular";
+  if (score<=10) {
+    canvasDraw.fillText(emojiFromArray, score+80, 80);  
+  }else if (score>=11) {
+    canvasDraw.height=400;
+    canvasDraw.fillText(emojiFromArray, 80, score+80);
+  }
+
+  canvasDraw.save();
 }
 
 function toggleVoiceOpts() {
