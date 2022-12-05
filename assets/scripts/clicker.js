@@ -4039,8 +4039,8 @@ const smartMouthArray = ["you're doing great!",
 ];
 
 const synth = window.speechSynthesis; //init. the speechSynth to a const.
-let inputTxt = document.querySelector('.wordsList'); // text string to speak
-let voiceSelect = document.querySelector('select'); // DOM element <select>
+const inputTxt = document.querySelector('.wordsList'); // text string to speak
+const voiceSelect = document.querySelector('select'); // DOM element <select>
 
 let pitchValue = document.getElementById('pitchValue'); // pitch value of the voice speaking
 let pitchTxt = document.getElementById('pitchTxt');
@@ -4056,7 +4056,6 @@ rateValue.oninput = function () {
   rateTxt.innerText = "Rate: " + rateValue.value;
 }
 
-let PSuRndNumRate = Math.fround(Math.random()+0.1);
 let voices = [];
 
 function populateVoiceList() {
