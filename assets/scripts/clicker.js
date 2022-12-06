@@ -4038,14 +4038,14 @@ const smartMouthArray = ["you're doing great!",
 "you are out of the will!", "Fantastic!", "its just kind of sad now"
 ];
 
-const synth = window.speechSynthesis; //init. the speechSynth to a const.
-const inputTxt = document.querySelector('.wordsList'); // text string to speak
-const voiceSelect = document.querySelector('select'); // DOM element <select>
+const synth = window.speechSynthesis;
+const inputTxt = document.querySelector('.wordsList');
+const voiceSelect = document.querySelector('select');
 
-let pitchValue = document.getElementById('pitchValue'); // pitch value of the voice speaking
+let pitchValue = document.getElementById('pitchValue');
 let pitchTxt = document.getElementById('pitchTxt');
 
-let rateValue = document.getElementById('rateValue'); //rate value of the voice speaking
+let rateValue = document.getElementById('rateValue');
 let rateTxt = document.getElementById('rateTxt');
 
 pitchValue.oninput = function () {
@@ -4136,28 +4136,40 @@ function smartMouth(SMoutElID){
 
 function sayPhrase(){
     if (synth.speaking) {
-        console.error('speechSynthesis.speaking');
+        synth.pause();
         return;
     }
+
+    if (synth.paused) {
+      synth.resume();
+      return;
+    }
+
     if (inputTxt.textContent !== '') {
-    let phraseToSay = new SpeechSynthesisUtterance(inputTxt.textContent);
+    
+      let phraseToSay = new SpeechSynthesisUtterance(inputTxt.textContent);
+    
     phraseToSay.onend = function (event) {
         console.log('SpeechSynthesisUtterance.onend');
     }
+    
     phraseToSay.onerror = function (event) {
-        console.error('SpeechSynthesisUtterance.onerror');
+        console.error('SpeechSynthesisUtterance.onerror', event.error());
     }
+    
     let selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
+    
     for(i = 0; i < voices.length ; i++) {
       if(voices[i].name === selectedOption) {
         phraseToSay.voice = voices[i];
         break;
       }
     }
+    
     phraseToSay.pitch = pitchValue.value;
     phraseToSay.rate = rateValue.value;
     synth.speak(phraseToSay);
-    console.log(`pitch: ${pitchValue.value}\nrate: ${rateValue.value}`);
+    //console.log(`pitch: ${pitchValue.value}\nrate: ${rateValue.value}`);
   }
 }
 
@@ -4176,17 +4188,17 @@ function ORIGINALclickeR(){
   document.getElementById("wordsList").insertAdjacentText("beforeend", wordsFromArray); //insert the emoji name from the emojiJSONArray
   
   smartMouth("smOut");
-  score = parseInt(document.getElementById("scoreText").textContent);
+  let score = parseInt(document.getElementById("scoreText").textContent);
   const displayedHS = parseInt(document.getElementById("hsText").textContent);   
   if (displayedHS <= score){
-    hscore = document.getElementById("hsText").textContent;
-    hscoreInt = parseInt(hscore).toFixed(0);
+    let hscore = document.getElementById("hsText").textContent;
+    let hscoreInt = parseInt(hscore).toFixed(0);
     hscoreInt++;
     hscore = hscoreInt.toString();
     document.getElementById("hsText").textContent = hscore;
     localStorage.setItem('clickerHS', hscore);
   };
-  scoreInt = parseInt(score).toFixed(0);
+  let scoreInt = parseInt(score).toFixed(0);
   scoreInt++;
   score = scoreInt.toString();
   document.getElementById("scoreText").textContent = score;
@@ -4220,19 +4232,19 @@ function clickeR(){
   
   smartMouth("smOut");
   
-  score = parseInt(document.getElementById("scoreText").textContent);
+  let score = parseInt(document.getElementById("scoreText").textContent);
   
   const displayedHS = parseInt(document.getElementById("hsText").textContent);   
   
   if (displayedHS <= score){
-    hscore = document.getElementById("hsText").textContent;
-    hscoreInt = parseInt(hscore).toFixed(0);
+    let hscore = document.getElementById("hsText").textContent;
+    let hscoreInt = parseInt(hscore).toFixed(0);
     hscoreInt++;
     hscore = hscoreInt.toString();
     document.getElementById("hsText").textContent = hscore;
     localStorage.setItem('clickerHS', hscore);
   };
-  scoreInt = parseInt(score).toFixed(0);
+  let scoreInt = parseInt(score).toFixed(0);
   scoreInt++;
   score = scoreInt.toString();
   document.getElementById("scoreText").textContent = score;
@@ -4246,7 +4258,6 @@ function clickeR(){
     canvasDraw.height=400;
     canvasDraw.fillText(emojiFromArray, 80, score+80);
   }
-
   canvasDraw.save();
 }
 

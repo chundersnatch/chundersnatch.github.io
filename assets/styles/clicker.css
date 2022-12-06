@@ -314,7 +314,7 @@ a {
   padding-top: 3vh;
   padding-bottom: 3vh;
   max-width: 85vw;
-  min-height: auto;
+  overflow: auto;
 }
 
 #emojiCanvasOut {
@@ -328,7 +328,6 @@ a {
   overflow: auto;
   font-size: 500%;
 }
-
 
 #voiceOptions {
   display: none;
@@ -351,7 +350,7 @@ a {
 
 #voiceText {
   vertical-align: middle;
-  font-size: 0.75rem;
+  font-size: 1rem;
   font-weight: bolder;
   padding-bottom: 5px;
 }
@@ -360,7 +359,7 @@ a {
   margin: auto;
   font-family: "MPlusCode-Expanded-Regular";
   font-style: normal;
-  font-size: 0.75rem;
+  font-size: 1rem;
   padding: 3px;
   color: white;
   display: flex;
@@ -368,6 +367,11 @@ a {
   border: 2px solid rgb(120, 120, 120);
   background-color: rgb(11, 11, 11);
   max-width: 58vw;
+}
+
+#select:hover {
+  background-color: rgb(38, 73, 35);
+  transition: 0.4s;
 }
 
 #wordsContainer {
@@ -390,76 +394,84 @@ a {
   font-family: "MiriamLibre-Regular";
   vertical-align: middle;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 24pt;
   justify-content: center;
-  color: rgba(255,255,255, 0.82);
   background-color: rgb(22, 22, 22);
   padding: 3px 5px;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
   outline: none;
-  border: 2px solid rgb(148, 196, 76);
-  border-radius: 6px;
   margin: auto;
-  min-width: 130px;
+  border: none;
+  border-radius: 20%;
+  border-color: rgb(22,22,22);
+  border-width: 0pt;
 }
 
 #stopSpeakingBtn:hover {
   background-color: rgb(38, 73, 35);
-  transition: 0.4s;
-  color:rgba(255, 255, 255, 0.82);
+  transition: 0.2s;
+  border: none;
+  border-radius: 20%;
+  border-color: rgb(22,22,22);
+  border-width: 0pt;
 }
 
 #saveClickerListBtn {
   font-family: "MiriamLibre-Regular";
   vertical-align: middle;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 24pt;
   justify-content: center;
-  color: rgba(255,255,255, 0.82);
   background-color: rgb(22, 22, 22);
   padding: 3px 5px;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
   outline: none;
-  border: 2px solid rgb(148, 196, 76);
-  border-radius: 6px;
   margin: auto;
-  min-width: 130px;
+  border: none;
+  border-radius: 20%;
+  border-color: rgb(22,22,22);
+  border-width: 0pt;
 }
 
 #saveClickerListBtn:hover {
   background-color: rgb(38, 73, 35);
-  transition: 0.4s;
-  color:rgba(255, 255, 255, 0.82);
+  transition: 0.2s;
+  border: none;
+  border-radius: 20%;
+  border-color: rgb(22,22,22);
+  border-width: 0pt;
 }
 
 #sayPhraseBtn {
   font-family: "MiriamLibre-Regular";
   vertical-align: middle;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 24pt;
   justify-content: center;
-  color: rgba(255,255,255, 82%);
   background-color: rgb(22, 22, 22);
   padding: 3px 5px;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
   outline: none;
-  border: 2px solid rgb(148, 196, 76);
-  border-radius: 6px;
   margin: auto;
-  min-width: 130px;
+  border: none;
+  border-radius: 20%;
+  border-color: rgb(22,22,22);
+  border-width: 0pt;
 }
 
 #sayPhraseBtn:hover {
   background-color: rgb(38, 73, 35);
-  transition: 0.4s;
-  color: lightgreen;
-  color:rgba(255, 255, 255, 0.82);
+  transition: 0.2s;
+  border: none;
+  border-radius: 20%;
+  border-color: rgb(22,22,22);
+  border-width: 0pt;
 }
 
 #wordsList {
@@ -471,8 +483,13 @@ a {
   font-size: 10pt;
 }
 
-.slidecontainer {
-  width: 100%;
+.btnContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.slidercontainer {
+  width: 82%;
 }
 
 .slider:hover {
@@ -513,12 +530,11 @@ a {
   color: white;
   font-family: "MiriamLibre-Bold";
   font-style: normal;
+  font-size: 12pt;
   width: auto;
   margin: auto;
   text-align: center;
 }
-
-
 
 @keyframes greenGlow {
   0%, 100% {background: radial-gradient(rgba(148, 196, 76, 0) 40%, rgba(22, 22, 22, 1) 60%);}
