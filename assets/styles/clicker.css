@@ -220,24 +220,6 @@ a {
   padding-top: 20px;
 }
 
-#hsContainer {
-  animation: HSAnim 1s infinite;
-  font-family: "MPlusCode-Expanded-Bold";
-  font-style: normal;
-  color: white;
-  display: block;
-  padding-right: 3vw;
-  padding-left: 3vw;
-  padding-bottom: 3vh;
-  top: 2.5vh;
-  left: 5vw;
-  position: fixed;
-  text-align: center;
-  max-width: 125px;
-  background: rgba(22, 22, 22, 0.8);
-  z-index: 101;
-}
-
 #hsText {
   animation: HStextAnim 4s infinite;
   font-family: "MPlusCode-Expanded-Bold";
@@ -248,7 +230,7 @@ a {
   text-align: center;
 }
 
-#scoreText {
+.scoreText {
   animation: HStextAnim 4s infinite;
   font-family: "MPlusCode-Expanded-Bold";
   vertical-align: middle;
@@ -258,7 +240,7 @@ a {
   text-align: center;
 }
 
-.curScoreContainer {
+.scoreContainer {
   animation: HSAnim 1s infinite;
   font-family: "MPlusCode-Expanded-Bold";
   font-style: normal;
@@ -268,12 +250,19 @@ a {
   padding-left: 3vw;
   padding-bottom: 3vh;
   top: 2.5vh;
-  right: 5vw;
   position: fixed;
   text-align: center;
   max-width: 125px;
   background: rgba(22, 22, 22, 0.8);
   z-index: 101;
+}
+
+#hsContainer {
+  left: 5vw;
+}
+
+#curScoreContainer {
+  right: 5vw;
 }
 
 #clickerContainer {

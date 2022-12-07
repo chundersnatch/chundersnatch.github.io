@@ -1,4 +1,4 @@
-const emojiDecimalArray = ["169", "174",
+export default emojiDecimalArray ["169", "174",
 "8252",
 "8265",
 "8482",

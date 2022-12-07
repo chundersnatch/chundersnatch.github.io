@@ -1,5 +1,5 @@
-import emojiJSONArray from '../datawerk/emojis.js';
-import smartMouthArray from '../datawerk/smartmouth.js';
+import { emojiJSONArray } from "../datawerk/emojis.js";
+import { smartMouthArray } from "../datawerk/smartmouth.js";
 
 const synth = window.speechSynthesis;
 const inputTxt = document.querySelector('.wordsList');
@@ -46,9 +46,12 @@ function populateVoiceList() {
 window.onload = function() {
   const rndMax = emojiJSONArray.length;
   const rndNum = Math.floor(Math.random()*(rndMax-1));
+  
   const newEmoji = emojiJSONArray[rndNum];
   const htmlEmoji = newEmoji.html;
+  
   const emojiCanvasObj = document.getElementById("emojiCanvasOut");
+  
   let emojiDraw = emojiCanvasObj.getContext("2d");
   emojiCanvasObj.height= 200;
   emojiCanvasObj.width = window.innerWidth / 1.2;
@@ -70,18 +73,7 @@ window.onload = function() {
   if (speechSynthesis.onvoiceschanged !== undefined) {
     speechSynthesis.onvoiceschanged = populateVoiceList;
   };
-
-  readEmojiJSON();
 };
-
-function readEmojiJSON() {
-  const data = new Promise((resolve, reject) => {
-    fetch('../json/emojis.json')
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.log(error));
-  });
-}
 
 function saveClickerList() {
   let emojiCanvasObj = document.getElementById("emojiCanvasOut");
@@ -162,7 +154,7 @@ function ORIGINALclickeR(){
   document.getElementById("wordsList").insertAdjacentText("beforeend", wordsFromArray); //insert the emoji name from the emojiJSONArray
   
   smartMouth("smOut");
-  let score = parseInt(document.getElementById("scoreText").textContent);
+  let score = parseInt(document.getElementById("curScoreText").textContent);
   const displayedHS = parseInt(document.getElementById("hsText").textContent);   
   if (displayedHS <= score){
     let hscore = document.getElementById("hsText").textContent;
@@ -175,7 +167,7 @@ function ORIGINALclickeR(){
   let scoreInt = parseInt(score).toFixed(0);
   scoreInt++;
   score = scoreInt.toString();
-  document.getElementById("scoreText").textContent = score;
+  document.getElementById("curScoreText").textContent = score;
 }
 
 function clickeR(){
@@ -206,7 +198,7 @@ function clickeR(){
   
   smartMouth("smOut");
   
-  let score = parseInt(document.getElementById("scoreText").textContent);
+  let score = parseInt(document.getElementById("curScoreText").textContent);
   
   const displayedHS = parseInt(document.getElementById("hsText").textContent);   
   
@@ -221,7 +213,7 @@ function clickeR(){
   let scoreInt = parseInt(score).toFixed(0);
   scoreInt++;
   score = scoreInt.toString();
-  document.getElementById("scoreText").textContent = score;
+  document.getElementById("curScoreText").textContent = score;
 
   let canvasDraw = document.getElementById("emojiCanvasOut").getContext("2d");
   canvasDraw.restore();
