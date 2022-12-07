@@ -1,4 +1,4 @@
-export default emojiJSONArray [
+const emojiJSONArray = [
     {"emoji": "👩‍👩‍👧‍👧", "name": "family", "shortname": ":woman_woman_girl_girl:", "unicode": "1F469 200D 1F469 200D 1F467 200D 1F467", "html": "&#128105;&zwj;&#128105;&zwj;&#128103;&zwj;&#128103;", "category": "People & Body (family)", "order": ""},
     {"emoji": "👩‍👩‍👧‍👦", "name": "family", "shortname": ":woman_woman_girl_boy:", "unicode": "1F469 200D 1F469 200D 1F467 200D 1F466", "html": "&#128105;&zwj;&#128105;&zwj;&#128103;&zwj;&#128102;", "category": "People & Body (family)", "order": ""},
     {"emoji": "👩‍👩‍👦‍👦", "name": "family", "shortname": ":woman_woman_boy_boy:", "unicode": "1F469 200D 1F469 200D 1F466 200D 1F466", "html": "&#128105;&zwj;&#128105;&zwj;&#128102;&zwj;&#128102;", "category": "People & Body (family)", "order": ""},
