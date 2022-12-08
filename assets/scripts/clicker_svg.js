@@ -3988,8 +3988,8 @@ function sayPhrase(){
 
 let imgListStr = "";
 
-const svgTemplateHead=`<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64">`;
-const svgTemplateEnd=`</svg>`;
+const svgTemplateHead=`<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"><text x="50%" y="50%">`;
+const svgTemplateEnd=`</text></svg>`;
 
 function clickeR(){
   const rndMax = emojiJSONArray.length;
@@ -4031,9 +4031,10 @@ function clickeR(){
   score = scoreInt.toString();
   document.getElementById("curScoreText").textContent = score;
   
-  const svgTemplateText=`<text x="50%" y="75%" font-size="250%" text-anchor="middle" fill="white">${emojiFromArray}</text>`;
+  const svgTemplateText=`<tspan dx="0" dy="0" width="64" height="64" font-size="250%" text-anchor="middle" fill="white">${emojiFromArray}</tspan>`;
   const svgTemplate=`${svgTemplateHead}${svgTemplateText}${svgTemplateEnd}`;
   let svg = svgTemplate; //<svg> element string
+  
   function svgToPng(svg, callback) {
     const url = getSvgUrl(svg);
     svgUrlToPng(url, (imgData) => {
@@ -4052,9 +4053,7 @@ function clickeR(){
     const svgImage = document.createElement('img');
     document.getElementById("emojiCanvasOutContainer").appendChild(svgImage);
     svgImage.src = svgUrl;
-    imgListStr = imgListStr + svgTemplateText;
-    //imgListStr = `${imgListStr}${svgTemplateText}`;
-    //imgArray.push(svg);
+    imgListStr = `${imgListStr}${svgTemplateText}`;
     console.log(imgListStr);
   }
 
@@ -4062,8 +4061,8 @@ function clickeR(){
 }
 
 function saveClickerList() {
-  let svg = svgTemplateHead + imgListStr + svgTemplateEnd;
-  //let svg = `${svgTemplateHead}${imgListStr}${svgTemplateEnd}`;
+  
+  let svg = `${svgTemplateHead}${imgListStr}${svgTemplateEnd}`;
 
   function svgToPng(svg, callback) {
     const url = getSvgUrl(svg);
@@ -4074,19 +4073,23 @@ function saveClickerList() {
   }
 
   function getSvgUrl(svg) {
-    return URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'}));
+    return URL.createObjectURL(new Blob([svg], {
+      type: 'image/svg+xml'
+    }));
   }
 
   function svgUrlToPng(svgUrl, callback) {
     const svgImage = document.createElement('img');
-    document.body.appendChild(svgImage);
+    document.getElementById("emojiCanvasOutContainer").appendChild(svgImage);
     svgImage.src = svgUrl;
   }
-  
+
   svgToPng(svg);
+
   const link = document.createElement('a');
-  link.href=getSvgUrl(svg);
-  link.download=svgUrlToPng(svg);
+  link.hidden=true;
+  link.href=getPngUrl(getSvgUrl(svg));
+  link.download;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
