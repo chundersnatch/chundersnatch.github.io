@@ -3986,8 +3986,10 @@ function sayPhrase(){
   }
 }
 
-let imgArray = [];
 let imgListStr = "";
+
+const svgTemplateHead=`<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64">`;
+const svgTemplateEnd=`</svg>`;
 
 function clickeR(){
   const rndMax = emojiJSONArray.length;
@@ -4029,10 +4031,9 @@ function clickeR(){
   score = scoreInt.toString();
   document.getElementById("curScoreText").textContent = score;
   
-  const svgTemplate=`<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64"><text x="50%" y="75%" font-size="250%" text-anchor="middle" fill="white">${emojiFromArray}</text></svg>`;
-
+  const svgTemplateText=`<text x="50%" y="75%" font-size="250%" text-anchor="middle" fill="white">${emojiFromArray}</text>`;
+  const svgTemplate=`${svgTemplateHead}${svgTemplateText}${svgTemplateEnd}`;
   let svg = svgTemplate; //<svg> element string
-
   function svgToPng(svg, callback) {
     const url = getSvgUrl(svg);
     svgUrlToPng(url, (imgData) => {
@@ -4051,15 +4052,18 @@ function clickeR(){
     const svgImage = document.createElement('img');
     document.getElementById("emojiCanvasOutContainer").appendChild(svgImage);
     svgImage.src = svgUrl;
-    imgArray.push(svg);
-    //console.log(imgArray);
+    imgListStr = imgListStr + svgTemplateText;
+    //imgListStr = `${imgListStr}${svgTemplateText}`;
+    //imgArray.push(svg);
+    console.log(imgListStr);
   }
 
   svgToPng(svg);
 }
 
 function saveClickerList() {
-  let svg = imgArray;
+  let svg = svgTemplateHead + imgListStr + svgTemplateEnd;
+  //let svg = `${svgTemplateHead}${imgListStr}${svgTemplateEnd}`;
 
   function svgToPng(svg, callback) {
     const url = getSvgUrl(svg);
