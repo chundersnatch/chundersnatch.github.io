@@ -3987,6 +3987,7 @@ function sayPhrase(){
 }
 
 let imgArray = [];
+let imgListStr = "";
 
 function clickeR(){
   const rndMax = emojiJSONArray.length;
@@ -4077,10 +4078,11 @@ function saveClickerList() {
     document.body.appendChild(svgImage);
     svgImage.src = svgUrl;
   }
-
+  
+  svgToPng(svg);
   const link = document.createElement('a');
   link.href=getSvgUrl(svg);
-  link.download=svgToPng(svg);
+  link.download=svgUrlToPng(svg);
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
