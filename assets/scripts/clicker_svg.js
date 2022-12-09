@@ -4083,6 +4083,9 @@ function saveClickerList() {
     document.getElementById("emojiCanvasOutContainer").appendChild(svgImage);
     svgImage.src = svgUrl;
   }
+  
+  const canvas = document.getElementById('mycanvas')
+  const img    = canvas.toDataURL('image/png')
 
   svgToPng(svg);
 
