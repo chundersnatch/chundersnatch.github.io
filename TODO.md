@@ -1,5 +1,8 @@
 # TODO
 
-need to fix turning svg xml into png element using canvas obj.
-google it and you'll find a way to translate the svg+xml into
-the canvas, then attach the 'link.href' to the canvas url.
+review the handwritten 'code review' paperwork,
+revise the 'master', 'output-playground' & 'styling' branches
+to function as outlined within the 'code review' paperwork.
+fully functionaly 'chundernsatch clicker game v2' (the 'v2' branch)
+will be merged into 'master' afterwards.
+thusly, the committed merge into 'master' from 'v2' will be the 'relase'.
