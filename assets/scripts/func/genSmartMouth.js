@@ -5,9 +5,11 @@ const smartMouthArray = ["you're doing great!",
 
 function genRndNum(length) {
     const rndNum = Math.floor(Math.random()*(length-1));
+    return rndNum;
 }
 
-function smartMouth(){
-    const smText = smartMouthArray[genRndNum(smartMouthArray.length)];
+function genSmartMouth(outputElement){
+    const smArrayIndex = genRndNum(smartMouthArray.length);
+    const smText = document.getElementById(outputElement).innerText = smartMouthArray[smArrayIndex];
     return smText;
 }

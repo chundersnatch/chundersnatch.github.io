@@ -3871,14 +3871,83 @@ function genRndNum(length) {
 }
 
 function genEmoji(){    
-    //const arrayIndex = genRndNum(emojiArray.length); // <~~ might need this, & thusly below becomes const newEmoji = emojiArray[arrayIndex];
-    const newEmoji = emojiArray[genRndNum(emojiArray.length)];
+    const emojiArrayIndex = genRndNum(emojiArray.length); // <~~ might need this, & thusly below becomes const newEmoji = emojiArray[arrayIndex];
+    const newEmoji = emojiArray[emojiArrayIndex];
+    //const newEmoji = emojiArray[genRndNum(emojiArray.length)];
     return newEmoji;
 }
 
-function genEmojiObject(){    
-    const arrayIndex = genRndNum(emojiArray.length);
-    const newEmoji = emojiArray[arrayIndex];
-    //const newEmoji = emojiArray[genRndNum(emojiArray.length)];
-    return newEmoji[{"emoji": newEmoji.emoji, "name": newEmoji.name}];
+function scoreHS(currentScoreElement, highScoreElement, LocalStorageName){
+    
+    const highScoreFromStorage = localStorage.getItem(`${LocalStorageName}`);
+    
+    if (highScoreFromStorage !== undefined && highScoreFromStorage !== null){
+        document.getElementById(`${highScoreElement}`).innerText = highScoreFromStorage.toString();
+    };
+    
+    let score = parseInt(document.getElementById(`${currentScoreElement}`).textContent);
+    const displayedHS = parseInt(document.getElementById(`${highScoreElement}`).textContent);
+    
+    if (displayedHS <= score){
+        let hscore = document.getElementById(`${highScoreElement}`).textContent;
+        let hscoreInt = parseInt(hscore).toFixed(0);
+        hscoreInt++;
+        hscore = hscoreInt.toString();
+        document.getElementById(`${highScoreElement}`).textContent = hscore;
+        localStorage.setItem(`${LocalStorageName}`, hscore);
+    };
+    
+    let scoreInt = parseInt(score).toFixed(0);
+    scoreInt++;
+    score = scoreInt.toString();
+    document.getElementById(`${currentScoreElement}`).textContent = score;
 }
+
+const smartMouthArray = ["you're doing great!",
+"keep up the ::meh:: work", "why?", "i'm not upset, just dissapointed",
+"you are out of the will!", "Fantastic!", "its just kind of sad now"
+];
+
+function genSmartMouth(outputElement){
+    const smArrayIndex = genRndNum(smartMouthArray.length);
+    const smText = document.getElementById(outputElement).innerText = smartMouthArray[smArrayIndex];
+    return smText;
+}
+
+function clickeR(){
+    let emojiObj = genEmoji();
+    
+    document.getElementById("rndEmoji").innerText = emojiObj.emoji;
+    document.getElementById("wordsList").insertAdjacentText("beforeend", emojiObj.name); //insert the emoji name from the emojiJSONArray
+    
+    genSmartMouth("smOut");
+    scoreHS("curScoreText","hsText","clickerHS");
+}
+
+function drawEmojiOnCanvas(outputElement) {
+    const emojiCanvasObj = document.getElementById(outputElement);
+    
+    let emojiDraw = emojiCanvasObj.getContext("2d");
+    
+    emojiCanvasObj.height= window.innerHeight / 1.2;
+    emojiCanvasObj.width = window.innerWidth / 1.2;
+    
+    emojiDraw.font = "64pt MiriamLibre-Regular";
+    emojiDraw.textAlign = "left";
+    emojiDraw.fillText(newEmoji.emoji, 80, 80);
+    emojiDraw.save();
+}
+
+window.onload = function() {
+    document.getElementById("clickerBtn").innerText = "Click Me!";
+
+    document.getElementById("rndEmoji").innerHTML = genEmoji().emoji;
+    
+    scoreHS("curScoreText","hsText","clickerHS");
+    
+    populateVoiceList();
+    
+    if (speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = populateVoiceList();
+    };
+};
