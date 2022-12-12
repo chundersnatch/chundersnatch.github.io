@@ -3865,6 +3865,13 @@ const emojiArray = [
     {"emoji": "🏴󠁧󠁢󠁷󠁬󠁳󠁿", "name": "Wales", "shortname": ":wales:", "unicode": "1F3F4 E0067 E0062 E0077 E006C E0073 E007F", "html": "&#x1F3F4;&#xE0067;&#xE0062;&#xE0077;&#xE006C;&#xE0073;&#xE007F;", "category": "(subdivision-flag)", "order": ""}
 ];
 
+const smartMouthArray = ["you're doing great!",
+"keep up the ::meh:: work", "why?", "i'm not upset, just dissapointed",
+"you are out of the will!", "Fantastic!", "its just kind of sad now"
+];
+
+const synth = window.speechSynthesis;
+
 function genRndNum(length) {
     const rndNum = Math.floor(Math.random()*(length-1));
     return rndNum;
@@ -3903,10 +3910,13 @@ function scoreHS(currentScoreElement, highScoreElement, LocalStorageName){
     document.getElementById(`${currentScoreElement}`).textContent = score;
 }
 
-const smartMouthArray = ["you're doing great!",
-"keep up the ::meh:: work", "why?", "i'm not upset, just dissapointed",
-"you are out of the will!", "Fantastic!", "its just kind of sad now"
-];
+function loadHS(highScoreElement, LocalStorageName){
+    const highScoreFromStorage = localStorage.getItem(`${LocalStorageName}`);
+    
+    if (highScoreFromStorage !== undefined && highScoreFromStorage !== null){
+        document.getElementById(`${highScoreElement}`).innerText = highScoreFromStorage.toString();
+    };
+}
 
 function genSmartMouth(outputElement){
     const smArrayIndex = genRndNum(smartMouthArray.length);
@@ -3914,19 +3924,20 @@ function genSmartMouth(outputElement){
     return smText;
 }
 
-function clickeR(){
+function clickeR(emojiOutputElement, wordsOutputElement, smOutputElement, currentScoreElement, highScoreElement, LocalStorageName){
     let emojiObj = genEmoji();
     
-    document.getElementById("rndEmoji").innerText = emojiObj.emoji;
-    document.getElementById("wordsList").insertAdjacentText("beforeend", emojiObj.name); //insert the emoji name from the emojiJSONArray
+    document.getElementById(emojiOutputElement).innerText = emojiObj.emoji;
+    document.getElementById(wordsOutputElement).insertAdjacentText("beforeend", emojiObj.name + " ");
     
-    genSmartMouth("smOut");
-    scoreHS("curScoreText","hsText","clickerHS");
+    genSmartMouth(smOutputElement);
+    scoreHS(currentScoreElement, highScoreElement, LocalStorageName);
 }
 
-function drawEmojiOnCanvas(outputElement) {
-    const emojiCanvasObj = document.getElementById(outputElement);
-    
+async function drawEmojiOnCanvas(outputCanvas, emojiObject, saveButton) {
+    const emojiCanvasObj = document.getElementById(outputCanvas);
+   
+    /*
     let emojiDraw = emojiCanvasObj.getContext("2d");
     
     emojiCanvasObj.height= window.innerHeight / 1.2;
@@ -3936,6 +3947,162 @@ function drawEmojiOnCanvas(outputElement) {
     emojiDraw.textAlign = "left";
     emojiDraw.fillText(newEmoji.emoji, 80, 80);
     emojiDraw.save();
+    
+    let imgListStr = "";
+    */
+
+    const svgHead=`<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%"><text x="50%" y="50%">`;
+    const svgTspan=`<tspan dx="0" dy="0" width="64" height="64" font-size="250%" text-anchor="middle" fill="white">${emojiObject.emoji}</tspan>`;
+    const svgEnd=`</text></svg>`;
+    const svgTemplate=`${svgHead}${svgTspan}${svgEnd}`;
+    
+    let svg = svgTemplate; //<svg> element string
+
+    let svgBlob = new Blob([svg], {type: 'image/svg+xml'});
+    let b64str = DOMURL.createObjectURL(svgBlob);
+
+    /*
+    Note:
+    SVG file upload is initially read as plaintext
+    The Blob object created is then encoded as a Base64 String
+    */
+
+    const canvas = document.getElementById(outputCanvas);
+    const img = canvas.toDataURL('image/png');
+
+    /* Embed in HTML <img> Element */ 
+    const loadImage = (url) => new Promise((resolve, reject) => {
+        const img = new Image(); // alt: document.createElement('img')
+        img.addEventListener('load', () => resolve(img));
+        img.addEventListener('error', (err) => reject(err));
+        img.src = url;
+    });
+
+    let _img = await loadImage(b64str);
+    let imgH = _img.naturalHeight; // original file height
+    let imgW = _img.naturalWidth; // original file width 
+
+    /* Draw Image on HTML5 Canvas
+
+    Note:
+    Ensure that the correct scaling is used
+    or low resolution images occurs.
+    */
+
+    const scale = window.devicePixelRatio*2;
+
+    /* Instantiate canvas */
+    let _canvas = document.createElement('canvas');
+    _canvas.width = imgW;
+    _canvas.height = imgH;
+    let _ctx = _canvas.getContext('2d');
+    _canvas['style']['width'] = `${Math.round(imgW/scale)}px`;
+    _canvas['style']['height'] = `${Math.round(imgH/scale)}px`;
+    _canvas['style']['margin'] = '0';
+    _canvas['style']['padding'] = '0';
+    _ctx.scale(scale, scale);
+    _ctx.drawImage(_img, 0, 0, Math.round(imgW/scale), Math.round(imgH/scale));
+    
+    /* Note: _canvas['style']['height'] is NOT equivalent to _canvas.height */
+
+    // Step 3. Generate Download Link
+    let dwnLink = document.createElement('a');     
+
+    // Note: fileName = original .svg filename dwnLink.download=fileName.substr(0,fileName.lastIndexOf('.'))+'.png';
+    dwnLink.href = _canvas.toDataURL();
+    dwnLink.innerText = '&#128190; Save';
+    document.getElementById(saveButton).innerHTML=dwnLink.outerHTML;
+}
+
+function toggleDisplay(element) {
+    const el = document.getElementById(element);
+    if (el.style.display !== "flex") {
+        el.style.display = "flex";
+    }else {
+        el.style.display = "none";
+    }
+}
+
+let pitchValue = document.getElementById('pitchValue');
+let pitchTxt = document.getElementById('pitchTxt');
+
+let rateValue = document.getElementById('rateValue');
+let rateTxt = document.getElementById('rateTxt');
+let voices = [];
+
+pitchValue.oninput = function () {
+    pitchTxt.innerText = "Pitch: " + pitchValue.value;
+}
+
+rateValue.oninput = function () {
+    rateTxt.innerText = "Rate: " + rateValue.value;
+}
+
+function populateVoiceList(dropdownElement) {
+    let voices = [];
+    const voiceSelect = document.getElementById(dropdownElement);
+    voices = synth.getVoices().sort(function (a, b) { 
+        const aname = a.name.toUpperCase(), bname = b.name.toUpperCase();
+        if ( aname < bname ) return -1;
+        else if ( aname == bname ) return 0;
+        else return +1;
+    });
+    
+    let selectedIndex = voiceSelect.selectedIndex < 0 ? 0 : voiceSelect.selectedIndex;
+    voiceSelect.innerHTML = '';
+    for(i = 0; i < voices.length ; i++) { 
+        let option = document.createElement('option');
+        option.textContent = voices[i].name + ' (' + voices[i].lang + ')';
+        if(voices[i].default) {
+            option.textContent += ' (default)';
+        }
+    
+        option.setAttribute('data-lang', voices[i].lang);
+        option.setAttribute('data-name', voices[i].name);
+        voiceSelect.appendChild(option);
+    }
+    
+    voiceSelect.selectedIndex = selectedIndex;
+}
+
+function sayPhrase(wordsListElement, dropdownElement){
+    const voiceSelect = document.getElementById(dropdownElement);
+    const inputTxt = document.getElementById(wordsListElement);
+    /*
+    if (synth.speaking) {
+        synth.pause();
+    }
+    
+    if (synth.paused) {
+        synth.resume();
+    }
+    */
+    if (inputTxt.textContent !== '') {
+    
+      let phraseToSay = new SpeechSynthesisUtterance(inputTxt.textContent);
+    
+    phraseToSay.onend = function (event) {
+        console.log('SpeechSynthesisUtterance.onend');
+    }
+    
+    phraseToSay.onerror = function (event) {
+        console.error('SpeechSynthesisUtterance.onerror', event.error());
+    }
+    
+    let selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
+    
+    for(i = 0; i < voices.length ; i++) {
+      if(voices[i].name === selectedOption) {
+        phraseToSay.voice = voices[i];
+        break;
+      }
+    }
+    
+    phraseToSay.pitch = pitchValue.value;
+    phraseToSay.rate = rateValue.value;
+    synth.speak(phraseToSay);
+    //console.log(`pitch: ${pitchValue.value}\nrate: ${rateValue.value}`);
+  }
 }
 
 window.onload = function() {
@@ -3943,11 +4110,11 @@ window.onload = function() {
 
     document.getElementById("rndEmoji").innerHTML = genEmoji().emoji;
     
-    scoreHS("curScoreText","hsText","clickerHS");
+    loadHS("hsText","clickerHS");
     
-    populateVoiceList();
+    populateVoiceList("select");
     
     if (speechSynthesis.onvoiceschanged !== undefined) {
-        speechSynthesis.onvoiceschanged = populateVoiceList();
+        speechSynthesis.onvoiceschanged = populateVoiceList("select");
     };
 };

@@ -15,26 +15,26 @@
             "webRoot": "C:\\Users\\jimsi\\source\\repos\\chundersnatch\\chundersnatch.github.io"
         },
         {
-            "type": "msedge",
+            "type": "pwa-msedge",
             "name": "Launch Microsoft Edge",
             "request": "launch",
             "runtimeArgs": [
                 "--remote-debugging-port=9222"
             ],
-            "url": "C:\\Users\\jimsi\\source\\repos\\chundersnatch\\chundersnatch.github.io",
+            "url": "c:\\Users\\jimsi\\source\\repos\\chundersnatch\\chundersnatch.github.io",
             "presentation": {
                 "hidden": true
             }
         },
         {
-            "type": "msedge",
+            "type": "pwa-msedge",
             "name": "Launch Microsoft Edge in headless mode",
             "request": "launch",
             "runtimeArgs": [
                 "--headless",
                 "--remote-debugging-port=9222"
             ],
-            "url": "C:\\Users\\jimsi\\source\\repos\\chundersnatch\\chundersnatch.github.io",
+            "url": "c:\\Users\\jimsi\\source\\repos\\chundersnatch\\chundersnatch.github.io",
             "presentation": {
                 "hidden": true
             }
@@ -43,7 +43,7 @@
             "type": "vscode-edge-devtools.debug",
             "name": "Open Edge DevTools",
             "request": "attach",
-            "url": "C:\\Users\\jimsi\\source\\repos\\chundersnatch\\chundersnatch.github.io",
+            "url": "c:\\Users\\jimsi\\source\\repos\\chundersnatch\\chundersnatch.github.io",
             "presentation": {
                 "hidden": true
             }
@@ -64,5 +64,5 @@
                 "Open Edge DevTools"
             ]
         }
-    ]
+    ],
 }

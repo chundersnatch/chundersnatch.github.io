@@ -291,6 +291,7 @@ a {
 }
 
 #emojiCanvasOutContainer {
+  display: none;
   font-family: "MiriamLibre-Regular";
   font-style: normal;
   color: white;

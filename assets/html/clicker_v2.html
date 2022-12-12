@@ -28,7 +28,7 @@
             <span class="rndEmoji" id="rndEmoji"></span>
             <span class="mainText" id="smOut">Click the button...</span>
             <span>
-                <button type="button" id="clickerBtn" onmousedown="clickeR()">?</button>
+                <button type="button" id="clickerBtn" onmousedown="clickeR('rndEmoji', 'wordsList', 'smOut', 'curScoreText', 'hsText', 'clickerHS')">?</button>
             </span>
             <br />
             <div class="menu" id="menuoptscontainer">
@@ -36,9 +36,9 @@
                     <p id="optstext">.: options :.</p>
                 </div>
                 <div class="menu" id="menu">
-                    <button type="button" id="voiceOptsBtn" onclick="toggleVoiceOpts()">&#128266;</button>
-                    <button type="button" id="wordsDisplayBtn" onclick="toggleWordsDisplay()">&#x270F;&#xFE0F;</button>
-                    <button type="button" id="clickerDisplayBtn" onclick="toggleClickerDisplay()">&#128515;</button>
+                    <button type="button" id="voiceOptsBtn" onclick="toggleDisplay('voiceOptions')">&#128266;</button>
+                    <button type="button" id="wordsDisplayBtn" onclick="toggleDisplay('wordsContainer')">&#x270F;&#xFE0F;</button>
+                    <button type="button" id="clickerDisplayBtn" onclick="toggleDisplay('emojiCanvasOutContainer')">&#128515;</button>
                 </div>
             </div>
             <br />
@@ -60,7 +60,7 @@
             </div>
             <br />
             <div class="btnContainer" id="btnContainer">
-                <button type="button" id="sayPhraseBtn" onclick="sayPhrase()">&#9199;</button>
+                <button type="button" id="sayPhraseBtn" onclick="sayPhrase('wordsList','select')">&#9199;</button>
                 <br />
                 <button type="button" id="stopSpeakingBtn" onclick="synth.cancel()">&#9209;</button>
                 <br />
