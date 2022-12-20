@@ -3932,6 +3932,7 @@ function genSmartMouth(outputElement){
 function clickeR(emojiOutputElement, wordsOutputElement, smOutputElement, currentScoreElement, highScoreElement, LocalStorageName){
     let emojiObj = genEmoji();
     
+    //drawEmojiOnCanvas("emojiCanvasOut",emojiObj,"saveClickerListBtn");
     document.getElementById(emojiOutputElement).innerText = emojiObj.emoji;
     document.getElementById(wordsOutputElement).insertAdjacentText("beforeend", emojiObj.name + " ");
     
