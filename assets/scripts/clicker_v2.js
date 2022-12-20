@@ -3871,6 +3871,12 @@ const smartMouthArray = ["you're doing great!",
 ];
 
 const synth = window.speechSynthesis;
+let pitchValue = document.getElementById('pitchValue');
+let pitchTxt = document.getElementById('pitchTxt');
+
+let rateValue = document.getElementById('rateValue');
+let rateTxt = document.getElementById('rateTxt');
+let voices = [];
 
 function genRndNum(length) {
     const rndNum = Math.floor(Math.random()*(length-1));
@@ -3878,9 +3884,8 @@ function genRndNum(length) {
 }
 
 function genEmoji(){    
-    const emojiArrayIndex = genRndNum(emojiArray.length); // <~~ might need this, & thusly below becomes const newEmoji = emojiArray[arrayIndex];
+    const emojiArrayIndex = genRndNum(emojiArray.length);
     const newEmoji = emojiArray[emojiArrayIndex];
-    //const newEmoji = emojiArray[genRndNum(emojiArray.length)];
     return newEmoji;
 }
 
@@ -4023,13 +4028,6 @@ function toggleDisplay(element) {
     }
 }
 
-let pitchValue = document.getElementById('pitchValue');
-let pitchTxt = document.getElementById('pitchTxt');
-
-let rateValue = document.getElementById('rateValue');
-let rateTxt = document.getElementById('rateTxt');
-let voices = [];
-
 pitchValue.oninput = function () {
     pitchTxt.innerText = "Pitch: " + pitchValue.value;
 }
@@ -4039,7 +4037,6 @@ rateValue.oninput = function () {
 }
 
 function populateVoiceList(dropdownElement) {
-    let voices = [];
     const voiceSelect = document.getElementById(dropdownElement);
     voices = synth.getVoices().sort(function (a, b) { 
         const aname = a.name.toUpperCase(), bname = b.name.toUpperCase();
@@ -4068,15 +4065,6 @@ function populateVoiceList(dropdownElement) {
 function sayPhrase(wordsListElement, dropdownElement){
     const voiceSelect = document.getElementById(dropdownElement);
     const inputTxt = document.getElementById(wordsListElement);
-    /*
-    if (synth.speaking) {
-        synth.pause();
-    }
-    
-    if (synth.paused) {
-        synth.resume();
-    }
-    */
     if (inputTxt.textContent !== '') {
     
       let phraseToSay = new SpeechSynthesisUtterance(inputTxt.textContent);
