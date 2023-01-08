@@ -3932,7 +3932,7 @@ function genSmartMouth(outputElement){
 function clickeR(emojiOutputElement, wordsOutputElement, smOutputElement, currentScoreElement, highScoreElement, LocalStorageName){
     let emojiObj = genEmoji();
     
-    //drawEmojiOnCanvas("emojiCanvasOut",emojiObj,"saveClickerListBtn");
+    drawEmojiOnCanvas("emojiCanvasOut",emojiObj,"saveClickerListBtn");
     document.getElementById(emojiOutputElement).innerText = emojiObj.emoji;
     document.getElementById(wordsOutputElement).insertAdjacentText("beforeend", emojiObj.name + " ");
     
@@ -3965,7 +3965,7 @@ async function drawEmojiOnCanvas(outputCanvas, emojiObject, saveButton) {
     let svg = svgTemplate; //<svg> element string
 
     let svgBlob = new Blob([svg], {type: 'image/svg+xml'});
-    let b64str = DOMURL.createObjectURL(svgBlob);
+    let b64str = URL.createObjectURL(svgBlob);
 
     /*
     Note:
@@ -4016,7 +4016,7 @@ async function drawEmojiOnCanvas(outputCanvas, emojiObject, saveButton) {
 
     // Note: fileName = original .svg filename dwnLink.download=fileName.substr(0,fileName.lastIndexOf('.'))+'.png';
     dwnLink.href = _canvas.toDataURL();
-    dwnLink.innerText = '&#128190; Save';
+    dwnLink.innerHTML = `&#128190;`;
     document.getElementById(saveButton).innerHTML=dwnLink.outerHTML;
 }
 
